@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  database:
+    container_name: data-pg
+    image: postgres:12.8-alpine
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - db:/var/lib/postgres/data
+
+volumes:
+  db:
