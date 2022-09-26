@@ -1,7 +1,7 @@
 package config
 
 import (
-	"Gomigration.demo2/controller"
+	"Gomigration.demo2/model"
 	"github.com/go-pg/pg"
 	"github.com/sirupsen/logrus"
 	"os"
@@ -12,7 +12,7 @@ func Connect() *pg.DB {
 		User:     "postgres",
 		Password: "pass",
 		Addr:     "localhost:5432",
-		Database: "Album_records",
+		Database: "User_records",
 	}
 
 	var db *pg.DB = pg.Connect(opts)
@@ -22,7 +22,7 @@ func Connect() *pg.DB {
 
 	}
 	logrus.Printf("Connected to db")
-	controller.CreatedAlbumTAble(db)
-	controller.InitiateDB(db)
+	model.CreatedUserTAble(db)
+	model.InitiateDB(db)
 	return db
 }

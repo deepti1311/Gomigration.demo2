@@ -1,4 +1,4 @@
-package controller
+package model
 
 import (
 	"github.com/go-pg/pg"
@@ -7,30 +7,31 @@ import (
 	"time"
 )
 
-type album struct {
+type User struct {
 	ID        string     `json:"id"`
-	Title     string     `json:"title"`
-	Artist    string     `json:"artist"`
-	Price     string     `json:"price"`
+	FirstName string     `json:"title"`
+	LastName  string     `json:"artist"`
+	UserName  string     `json:"price"`
+	Email     string     `json:"email"`
 	Completed string     `json:"completed"`
 	CreatedAt time.Time  `json:"created_at"`
 	UpdatedAt time.Time  `json:"updated_at"`
 	DeletedAt *time.Time `json:"deleted_at,omitempty"`
 }
 
-func CreatedAlbumTAble(db *pg.DB) error {
+func CreatedUserTAble(db *pg.DB) error {
 	opts := &orm.CreateTableOptions{
 		IfNotExists: true,
 	}
 
-	createError := db.CreateTable(&album{}, opts)
+	createError := db.CreateTable(&User{}, opts)
 
 	if createError != nil {
-		logrus.Printf("Error while creating album table , Reason: %v\n", createError)
+		logrus.Printf("Error while creating table , Reason: %v\n", createError)
 		return createError
 	}
 
-	logrus.Printf("album table created")
+	logrus.Printf("table created")
 	return nil
 }
 
